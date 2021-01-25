@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+<div align="center" style="width:100%;">
+    <p style="text-align:center;font-size:20px;">
+        <b>
+            Схема установки МШК-01 (без дивана)
+        </b>
+    </p>
+    <p>Выберите конфигурацию механизма МШК-01 в таблице и нажмите кнопку "Показать размеры конфигурации"</p>
+    <div align="center">
+        <form>
+            <table border="1" cellpadding="5">
+                <tr>
+                    <td>Вид<br>механизма</td>
+                    <td>Глубина<br>шкафа</td>
+                    <td>Ширина<br>спального<br>места</td>
+                    <td>Длина<br>спального<br>места</td>
+                </tr>
+                <tr>
+                    <td><font size="5">МШК-01</font></td>
+                    <td>
+                        <select id="select_wardrobe_dep">
+                            <option selected value="0">430</option>
+                            <option value="1">470</option>
+                            <option value="2">550</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="select_frame_wid">
+                            <option selected value="0">1400</option>
+                            <option value="1">1600</option>
+                            <option value="2">1800</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="select_frame_len">
+                            <option selected value="0">1900</option>
+                            <option value="1">2000</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <button id="button" onclick="showSizes()">Показать размеры конфигурации</button>
+    </div>
+</div>
+<br>
+
+<p style="text-align:center;font-size:20px;">
+    <b>
+        Размеры для МШК-01.<span id="title_wardrobe_dep"></span>.<span id="title_frame_wid"></span>.<span id="title_frame_len"></span>
+    </b>
+</p>
+
+<div class="view">
+    <img src="/static/img/mchk_01/1.jpg" alt="" style="width:500px;height:617px">
+    <span id="v1_hole_wid" style="left:250px;top:12px;"></span>
+    <span id="v1_frame_wid" style="left:250px;top:35px;"></span>
+    <span id="v1_frame_len" style="left:28px;top:340px;transform:rotate(-90deg);"></span>
+    <span id="v1_frame_floor" style="left:30px;top:570px;transform:rotate(-90deg);"></span>
+    <span id="v1_hole_hei" style="left:3px;top:340px;transform:rotate(-90deg);"></span>
+</div>
+<div class="view">
+    <img src="/static/img/mchk_01/2.jpg" alt="" style="width:610px;height:600px">
+    <span id="v2_wardrobe_dep" style="left:100px;top:10px;"></span>
+    <span id="v2_overhang" style="left:350px;top:428px;"></span>
+    <span id="v2_frame_dep" style="left:95px;top:428px;"></span>
+</div>
+<script>
+
+  showSizes();
+
+  function showSizes() {
+
+    let wardrobe_dep = Number(select_wardrobe_dep.options[select_wardrobe_dep.options.selectedIndex].text);
+    let frame_wid = Number(select_frame_wid.options[select_frame_wid.options.selectedIndex].text);
+    let frame_len = Number(select_frame_len.options[select_frame_len.options.selectedIndex].text);
+
+    let frame_dep;
+
+    switch (wardrobe_dep) {
+      case 430:
+        frame_dep = 148;
+        break;
+      case 470:
+        frame_dep = 195;
+        break;
+      case 550:
+        frame_dep = 295;
+        break;
+    }
+
+    title_wardrobe_dep.innerHTML = wardrobe_dep;
+    title_frame_wid.innerHTML = frame_wid;
+    title_frame_len.innerHTML = frame_len;
+
+    v1_hole_wid.innerHTML = frame_wid + 90;
+    v1_frame_wid.innerHTML = frame_wid;
+    v1_frame_len.innerHTML = frame_len;
+    v1_frame_floor.innerHTML = 402 - frame_dep;
+    v1_hole_hei.innerHTML = (402 - frame_dep) + frame_len + 48;
+
+    v2_wardrobe_dep.innerHTML = wardrobe_dep;
+    v2_overhang.innerHTML = frame_len - frame_dep - 158;
+    v2_frame_dep.innerHTML = frame_dep;
+  }
+
+</script>
+
+{% endblock %}
