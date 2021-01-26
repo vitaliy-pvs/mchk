@@ -3,21 +3,22 @@
 <div align="center" style="width:100%;">
     <p style="text-align:center;font-size:20px;">
         <b>
-            Схема установки МШК-01 (без дивана)
+            Схема установки МШК-01<br>
+            (без дивана)
         </b>
     </p>
-    <p>Выберите конфигурацию механизма МШК-01 в таблице и нажмите кнопку "Показать размеры конфигурации"</p>
+    <p>Выберите конфигурацию механизма МШК-01 в таблице ниже и нажмите кнопку "Показать размеры конфигурации"</p>
     <div align="center">
         <form>
             <table border="1" cellpadding="5">
                 <tr>
-                    <td>Вид<br>механизма</td>
-                    <td>Глубина<br>шкафа</td>
-                    <td>Ширина<br>спального<br>места</td>
-                    <td>Длина<br>спального<br>места</td>
+                    <td><font size="2">Вид<br>механизма</font></td>
+                    <td><font size="2">Глубина<br>шкафа</font></td>
+                    <td><font size="2">Ширина<br>спального<br>места</font></td>
+                    <td><font size="2">Длина<br>спального<br>места</font></td>
                 </tr>
                 <tr>
-                    <td><font size="5">МШК-01</font></td>
+                    <td><font size="3">МШК-01</font></td>
                     <td>
                         <select id="select_wardrobe_dep">
                             <option selected value="0">430</option>
@@ -49,23 +50,24 @@
 
 <p style="text-align:center;font-size:20px;">
     <b>
-        Размеры для МШК-01.<span id="title_wardrobe_dep"></span>.<span id="title_frame_wid"></span>.<span id="title_frame_len"></span>
+        Размеры для МШК-01.<span id="title_wardrobe_dep"></span>.<span id="title_frame_wid"></span>.<span
+            id="title_frame_len"></span>
     </b>
 </p>
 
 <div class="view">
-    <img src="/static/img/mchk_01/1.jpg" alt="" style="width:500px;height:617px">
-    <span id="v1_hole_wid" style="left:250px;top:12px;"></span>
-    <span id="v1_frame_wid" style="left:250px;top:35px;"></span>
-    <span id="v1_frame_len" style="left:28px;top:340px;transform:rotate(-90deg);"></span>
-    <span id="v1_frame_floor" style="left:30px;top:570px;transform:rotate(-90deg);"></span>
-    <span id="v1_hole_hei" style="left:3px;top:340px;transform:rotate(-90deg);"></span>
+    <img src="/static/img/mchk_01/1.jpg" alt="" style="width:375px;">
+    <span id="v1_hole_wid" style="left:195px;top:8px;"></span>
+    <span id="v1_frame_wid" style="left:195px;top:27px;"></span>
+    <span id="v1_frame_len" style="left:20px;top:260px;transform:rotate(-90deg);"></span>
+    <span id="v1_frame_floor" style="left:23px;top:425px;transform:rotate(-90deg);"></span>
+    <span id="v1_hole_hei" style="left:2px;top:250px;transform:rotate(-90deg);"></span>
 </div>
 <div class="view">
-    <img src="/static/img/mchk_01/2.jpg" alt="" style="width:610px;height:600px">
-    <span id="v2_wardrobe_dep" style="left:100px;top:10px;"></span>
-    <span id="v2_overhang" style="left:350px;top:428px;"></span>
-    <span id="v2_frame_dep" style="left:95px;top:428px;"></span>
+    <img src="/static/img/mchk_01/2.jpg" alt="" style="width:450px;">
+    <span id="v2_wardrobe_dep" style="left:80px;top:7px;"></span>
+    <span id="v2_overhang" style="left:260px;top:313px;"></span>
+    <span id="v2_frame_dep" style="left:70px;top:315px;"></span>
 </div>
 <script>
 
@@ -105,6 +107,8 @@
     v2_overhang.innerHTML = frame_len - frame_dep - 158;
     v2_frame_dep.innerHTML = frame_dep;
   }
+
+
 
 </script>
 

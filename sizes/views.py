@@ -20,9 +20,9 @@ if os.path.isfile(os.path.join(STATIC_ROOT, 'header.jpg')):
 
 page_title_list = [
     ["МШК-01", "mchk_01"],
-    ["МШК-01.ОС", "mchk_01_OS"],
-    ["МШК-04", "mchk_04"],
-    ["МШК-04.ОС", "mchk_04_OS"],
+    # ["МШК-01.ОС", "mchk_01_OS"],
+    # ["МШК-04", "mchk_04"],
+    # ["МШК-04.ОС", "mchk_04_OS"],
 ]
 
 
@@ -34,25 +34,25 @@ def mchk_01(request):
     })
 
 
-def mchk_01_OS(request):
-    current_page_title = "МШК-01.ОС"
-    return render(request, 'mchk_01_OS.html', {
-        'current_page_title': current_page_title,
-        'page_title_list': page_title_list,
-    })
-
-
-def mchk_04(request):
-    current_page_title = "МШК-04"
-    return render(request, 'mchk_04.html', {
-        'current_page_title': current_page_title,
-        'page_title_list': page_title_list,
-    })
-
-
-def mchk_04_OS(request):
-    current_page_title = "МШК-04.ОС"
-    return render(request, 'mchk_04_OS.html', {
-        'current_page_title': current_page_title,
-        'page_title_list': page_title_list,
-    })
+# def mchk_01_OS(request):
+#     current_page_title = "МШК-01.ОС"
+#     return render(request, 'mchk_01_OS.html', {
+#         'current_page_title': current_page_title,
+#         'page_title_list': page_title_list,
+#     })
+#
+#
+# def mchk_04(request):
+#     current_page_title = "МШК-04"
+#     return render(request, 'mchk_04.html', {
+#         'current_page_title': current_page_title,
+#         'page_title_list': page_title_list,
+#     })
+#
+#
+# def mchk_04_OS(request):
+#     current_page_title = "МШК-04.ОС"
+#     return render(request, 'mchk_04_OS.html', {
+#         'current_page_title': current_page_title,
+#         'page_title_list': page_title_list,
+#     })
