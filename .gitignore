@@ -14,5 +14,4 @@ pip-delete-this-directory.txt
 /sizes/static/header.jpg
 /sizes/static/logo.png
 /media/
-/static/
 db.json

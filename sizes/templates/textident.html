@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<script src="{% static '/tesseract/tesseract.js' %}"></script>
+
+<div id="imgident" style="padding:5px;">
+
+    <h1 align="center">Распознавание текста на английском языке с картинки</h1>
+
+    <p>Нажмите на кнопку и выберите файл картинки. Если файл не выбран, то распознается картинка
+        по умолчанию, либо картинка выбранная в предыдущий раз.</p>
+
+    <button>
+        <label for="myFile" style="cursor: pointer;">Выбрать другую картинку</label>
+    </button>
+
+    <input type="file" id="myFile" size="50" onchange="uploadImage(event)"
+           style="opacity:0;position:absolute;z-index: -1;">
+
+    <p id="waiting"><b><i>Текст распознается ...</i></b></p>
+
+</div>
+
+<script type=text/javascript>
+
+function uploadImage(event) {
+
+    var reader = new FileReader();
+    reader.addEventListener("load", function () {
+        if (this.result && localStorage) {
+            window.localStorage.removeItem("imgident");
+            window.localStorage.setItem("imgident", this.result);
+            location.reload();
+        } else {
+            alert("Ошибка при загрузке картинки с устройства.");
+        }
+    });
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+let classifier;
+let img;
+let img_url = window.localStorage.getItem("imgident");
+
+if (!img_url) {
+    img_url = "{% static 'imgident/img.jpg' %}";
+}
+
+Tesseract.recognize(img_url).then(function(result){lang:"eng"}).then(function(result){
+
+    waiting.remove();
+
+    let p_1 = document.createElement('p');
+    p_1.innerHTML = "<b><u>РЕЗУЛЬТАТЫ РАСПОЗНАВАНИЯ</u></b><br><br><i><u>Исходное изображение:</u></i>";
+    imgident.append(p_1);
+
+    let view_img = document.createElement("img");
+    view_img.src = img_url;
+    view_img.width = 350;
+    imgident.append(view_img);
+
+    let p_2 = document.createElement('p');
+    p_2.innerHTML = "<i><u>Распознанный текст:</u></i>";
+    imgident.append(p_2);
+
+    let p_3 = document.createElement('p');
+    p_3.innerHTML = result.text;
+    imgident.append(p_3);
+
+});
+
+</script>
+
+{% endblock %}
