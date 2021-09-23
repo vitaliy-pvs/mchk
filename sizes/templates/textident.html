@@ -29,8 +29,8 @@ function uploadImage(event) {
     var reader = new FileReader();
     reader.addEventListener("load", function () {
         if (this.result && localStorage) {
-            window.localStorage.removeItem("imgident");
-            window.localStorage.setItem("imgident", this.result);
+            window.localStorage.removeItem("textident");
+            window.localStorage.setItem("textident", this.result);
             location.reload();
         } else {
             alert("Ошибка при загрузке картинки с устройства.");
@@ -41,10 +41,10 @@ function uploadImage(event) {
 
 let classifier;
 let img;
-let img_url = window.localStorage.getItem("imgident");
+let img_url = window.localStorage.getItem("textident");
 
 if (!img_url) {
-    img_url = "{% static 'imgident/img.jpg' %}";
+    img_url = "{% static 'textident/1.png' %}";
 }
 
 Tesseract.recognize(img_url).then(function(result){lang:"eng"}).then(function(result){
