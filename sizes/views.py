@@ -1,4 +1,3 @@
-import os
 from django.shortcuts import render
 from mchk.settings import STATIC_ROOT
 from deep_translator import GoogleTranslator
@@ -6,23 +5,11 @@ from django.http import JsonResponse
 
 STATIC_ROOT = STATIC_ROOT.replace("\\", "/")
 
-favicon_exists = False
-if os.path.isfile(os.path.join(STATIC_ROOT, 'favicon.png')):
-    favicon_exists = True
-
-logo_exists = False
-if os.path.isfile(os.path.join(STATIC_ROOT, 'logo.png')):
-    logo_exists = True
-
-header_img_exists = False
-if os.path.isfile(os.path.join(STATIC_ROOT, 'header.jpg')):
-    header_img_exists = True
-
 page_title_list = [
     ["МШК-06", "art06"],
-    ["МШК-01", "mchk_01"],
-    ["imgident", "imgident"],
-    ["textident", "textident"],
+    # ["МШК-01", "mchk_01"],
+    # ["imgident", "imgident"],
+    # ["textident", "textident"],
 ]
 
 

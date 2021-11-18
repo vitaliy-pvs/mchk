@@ -161,7 +161,8 @@
 
 <script charset="utf-8">
 
-let tsarga_text, os_text, td_text, glm_text, glhk_value, shirina_value, dlina_value, vop_text, gazlifti_text, fixer_text, lameli_text, izgolovie_text, kozuhi_text;
+let tsarga_text, os_text, td_text, glm_text, glhk_value, shirina_value, dlina_value, vop_text, gazlifti_text,
+fixer_text, lameli_text, izgolovie_text, kozuhi_text;
 
 function updateVariables() {
 	tsarga_text = tsarga.options[tsarga.selectedIndex].text;
@@ -203,7 +204,7 @@ function showStructure() {
 	article = 'МШК-06' +
 		((tsarga_text == 'НЕТ') ? '.' : ('-' + tsarga_text + '.')) +
 		((os_text == 'НЕТ') ? '' : (os_text)) +
-		((td_text == 'НЕТ') ? '.' : ('-' + td_text) + '.') +
+		((td_text == 'НЕТ') ? '' : ('-' + td_text) + '.') +
 		glm_text +
 		((glhk_value == glm_text) ? '.' : ('-' + glhk_value + '.')) +
 		shirina_value + '.' +
@@ -221,11 +222,11 @@ function showStructure() {
 		addComponent('Боковина', 'МШК-06.10-У.00');
 	} else if (os_text == 'НЕТ' && gazlifti_text == 'УСМ') {
 		addComponent('Боковина', 'МШК-05-УСМ.00');
-	} else if (os_text == 'ОС' && gazlifti_text == 'А' && td_text == 'К') {
+	} else if (os_text == 'ОС' && gazlifti_text == 'А' && (td_text == 'К' || td_text == 'ДФ')) {
 		addComponent('Боковина', 'МШК-06.ОС.10-У.00');
 	} else if (os_text == 'ОС' && gazlifti_text == 'А' && vop_text == '430') {
 		addComponent('Боковина', 'МШК-06.ОС-430.10-У.00');
-	} else if (os_text == 'ОС' && td_text == 'К' && gazlifti_text == 'УСМ') {
+	} else if (os_text == 'ОС' && gazlifti_text == 'УСМ' && (td_text == 'К' || td_text == 'ДФ')) {
 		addComponent('Боковина', 'МШК-05.ОС-УСМ.00');
 	} else if (os_text == 'ОС' && gazlifti_text == 'УСМ' && vop_text == '430') {
 		addComponent('Боковина', 'МШК-05.ОС-430-УСМ.00');
