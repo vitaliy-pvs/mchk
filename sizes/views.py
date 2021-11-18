@@ -19,6 +19,7 @@ if os.path.isfile(os.path.join(STATIC_ROOT, 'header.jpg')):
     header_img_exists = True
 
 page_title_list = [
+    ["МШК-06", "art06"],
     ["МШК-01", "mchk_01"],
     ["imgident", "imgident"],
     ["textident", "textident"],
@@ -28,6 +29,14 @@ page_title_list = [
 def mchk_01(request):
     current_page_title = "МШК-01"
     return render(request, 'mchk_01.html', {
+        'current_page_title': current_page_title,
+        'page_title_list': page_title_list,
+    })
+
+
+def art06(request):
+    current_page_title = "МШК-06"
+    return render(request, 'art06.html', {
         'current_page_title': current_page_title,
         'page_title_list': page_title_list,
     })
