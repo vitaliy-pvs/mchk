@@ -204,8 +204,8 @@ function showStructure() {
 	article = 'МШК-06' +
 		((tsarga_text == 'НЕТ') ? '.' : ('-' + tsarga_text + '.')) +
 		((os_text == 'НЕТ') ? '' : (os_text)) +
-		((td_text == 'НЕТ') ? '' : ('-' + td_text) + '.') +
-		glm_text +
+		((td_text == 'НЕТ') ? '' : ('-' + td_text) + '') +
+		'.' + glm_text +
 		((glhk_value == glm_text) ? '.' : ('-' + glhk_value + '.')) +
 		shirina_value + '.' +
 		dlina_value +
