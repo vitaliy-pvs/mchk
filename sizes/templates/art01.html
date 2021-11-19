@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <div align="center" style="width:100%;">
-      <h2>МШК-06</h2>
+      <h2>МШК-01</h2>
     <table id="form" border="1" cellpadding="5">
         <tr>
             <td><font size="2">Механизм</font></td>
-            <td><font size="3">МШК-06</font></td>
+            <td><font size="3">МШК-01</font></td>
         </tr>
         <tr>
             <td><font size="2">Царга</font></td>
@@ -127,8 +127,8 @@
             <td><font size="2">Изголовье</font></td>
             <td>
                 <select id="izgolovie">
-                    <option selected value="0">НЕТ</option>
-                    <option value="1">ИЗ</option>
+                    <option value="0">НЕТ</option>
+                    <option selected value="1">ИЗ</option>
                 </select>
             </td>
         </tr>
@@ -389,10 +389,9 @@ form.onchange = function (event) {
 	}
 
 	<!--8)-->
-	if (Number(shirina.value) < Number(dlina.value) && izgolovie.value == '1') {
-		addWarn("В вертикальном исполнении изголовье (ИЗ) не применяется.");
-		shirina.style.color = "red";
-		dlina.style.color = "red";
+	if (tsarga.value == '1' && izgolovie.value == '0') {
+		addWarn("При отсутствии царги (Ц) требуется изголовье (ИЗ).");
+		tsarga.style.color = "red";
 		izgolovie.style.color = "red";
 	}
 
