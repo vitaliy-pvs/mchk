@@ -214,7 +214,7 @@ function showStructure() {
 		((fixer_text == 'НЕТ') ? '' : ('.' + fixer_text)) +
 		((lameli_text == 'Л') ? '' : ('.' + lameli_text)) +
 		((izgolovie_text == 'НЕТ') ? '' : ('.' + izgolovie_text)) +
-		((kozuhi_text == 'НЕТ') ? '' : ('.' + kozuhi_text))
+		((kozuhi_text == 'НЕТ') ? '' : ('.' + kozuhi_text));
 
 	showArticle(article);
 
@@ -354,7 +354,7 @@ form.onchange = function (event) {
 
 	<!--3)-->
 	if (td.selectedIndex == '1' && fixer.selectedIndex == '3') {
-		addWarn("Требуется фиксация фасада для механизма дивана (К) ");
+		addWarn("Требуется фиксация фасада для механизма дивана (К)");
 		td.style.color = "red";
 		fixer.style.color = "red";
 	}

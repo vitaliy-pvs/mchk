@@ -6,7 +6,7 @@ from django.http import JsonResponse
 STATIC_ROOT = STATIC_ROOT.replace("\\", "/")
 
 page_title_list = [
-    # ["МШК-01", "art01"],
+    ["МШК-01", "art01"],
     ["МШК-06", "art06"],
     # ["МШК-01", "mchk_01"],
     # ["imgident", "imgident"],
