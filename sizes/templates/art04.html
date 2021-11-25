@@ -105,7 +105,7 @@
                 </td>
             </tr>
             <tr>
-                <td><font size="2">Усиленный</font></td>
+                <td><font size="2">Усиленное исполнение</font></td>
                 <td>
                     <select id="us">
                         <option selected value="0">НЕТ</option>
@@ -154,8 +154,8 @@
 
 <script charset="utf-8">
 
-let os_text, td_text, gld_value, glm_text, glhk_value, shirina_value, dlina_value, vov_value, fcd_text, us_text,
-	fixer_text, ed_text;
+let os_text, td_text, gld_value, glm_text, glhk_value, shirina_value,
+    dlina_value, vov_value, fcd_text, us_text, fixer_text, ed_text;
 
 function updateVariables() {
 	os_text = os.options[os.selectedIndex].text;
@@ -264,6 +264,14 @@ function showStructure() {
 		addComponent('Метизы синхр-ра', 'НЕТ');
 	}
 
+	if (fixer_text == 'КН') {
+		addComponent('Фиксатор', 'Кнопка стопорная');
+	} else if (fixer_text == 'РЗ') {
+		addComponent('Фиксатор', 'Ригельный замок');
+	} else {
+		addComponent('Фиксатор', 'НЕТ');
+	}
+
 	if (ed_text == 'ЭД1') {
 		addComponent('Электродвигатель', 'Megamat MCZ 58257');
 	} else if (ed_text == 'ЭД2') {
@@ -367,15 +375,16 @@ form.onchange = function(event) {
 		gld.value = '550';
 	}
 
+	<!--2)-->
 	if (td_text == 'НЕТ' && os_text == 'ОС') {
-		addWarn("Отдельно стоящий механизм должен иметь диван.");
+		addWarn("- Отдельно стоящий механизм (ОС) должен иметь диван.");
 		td.style.color = "red";
 		os.style.color = "red";
 	}
 
 	<!--3)-->
 	if (td_text == 'МТД-33' && fixer_text == 'НЕТ' && ed_text == 'НЕТ') {
-		addWarn("При использовании МТД-33 нужна фиксация фасада.");
+		addWarn("- Нужна фиксация фасада при использовании МТД-33.");
 		td.style.color = "red";
 		fixer.style.color = "red";
 		ed.style.color = "red";
@@ -383,7 +392,7 @@ form.onchange = function(event) {
 
 	<!--4)-->
 	if ((td_text == 'ДФ' || fixer_text != 'НЕТ') && ed_text != 'НЕТ') {
-		addWarn("При использовании дивана ДФ или фиксации фасада применение электродвигателя (ЭД) запрещено.");
+		addWarn("- Запрещено применение электродвигателя (ЭД) при использовании дивана ДФ или фиксации фасада.");
 		td.style.color = "red";
 		fixer.style.color = "red";
 		ed.style.color = "red";
@@ -391,27 +400,39 @@ form.onchange = function(event) {
 
 	<!--5)-->
 	if (Number(glm_text) > Number(glhk_value)) {
-		addWarn("Глубина механизма не может быть больше глубины шкафа.");
+		addWarn("- Глубина механизма не может быть больше глубины шкафа.");
 		glm.style.color = "red";
 		glhk.style.color = "red";
 	}
 
 	<!--9)-->
 	if (350 > Number(glhk.value) || Number(glhk.value) > 600) {
-		addWarn("Укажите глубину шкафа от 350 мм до 600 мм.");
+		addWarn("- Укажите глубину шкафа от 350 мм до 600 мм.");
 		glhk.style.color = "red";
 	}
 
 	<!--10)-->
 	if (680 > Number(shirina.value) || Number(shirina.value) > 2100) {
-		addWarn("Укажите ширину спального места от 680 мм до 2100 мм.");
+		addWarn("- Укажите ширину спального места от 680 мм до 2100 мм.");
 		shirina.style.color = "red";
 	}
 
 	<!--11)-->
 	if (800 > Number(dlina.value) || Number(dlina.value) > 2100) {
-		addWarn("Укажите длину спального места от 800 мм до 2100 мм.");
+		addWarn("- Укажите длину спального места от 800 мм до 2100 мм.");
 		dlina.style.color = "red";
+	}
+
+	if (us_text != 'УС' && Number(shirina.value) >= 1800 && Number(dlina.value) >= 1800) {
+		addWarn("- Вертикальный МШК с шириной спального места 1800 мм и более должен иметь усиленное исполнение (УС).");
+		us.style.color = "red";
+		shirina.style.color = "red";
+	}
+
+	if (us_text == 'УС' && Number(shirina.value) < 1800) {
+		addWarn("- Механизм с шириной спального места менее 1800 мм не имеет усиленного исполнения (УС).");
+		us.style.color = "red";
+		shirina.style.color = "red";
 	}
 
 	if (warning_container.innerHTML == '') {
