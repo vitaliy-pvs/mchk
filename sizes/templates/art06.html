@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div align="center" style="width:100%;">
-      <h2>МШК-06</h2>
+      <h2>Конфигуратор МШК-06</h2>
     <table id="form" border="1" cellpadding="5">
         <tr>
             <td><font size="2">Механизм</font></td>
@@ -145,10 +145,8 @@
         </tr>
     </table>
 
-    <h4>ЗАМЕЧАНИЯ:</h4>
     <div id="warning_container"></div>
     <br>
-    <div id="article_container"></div>
     <div id="component_container"></div>
     <table id="table_container" border="1" cellpadding="5"></table>
     <br>
@@ -184,18 +182,17 @@ updateVariables();
 
 function addComponent(component_name, component_article) {
 	let component_tr = document.createElement('tr');
-	component_tr.innerHTML = '<td>' + component_name + '</td>' + '<td>' + component_article + '</td>';
+	component_tr.innerHTML = '<td><b>' + component_name + '</b></td>' + '<td>' + component_article + '</td>';
 	table_container.append(component_tr);
-};
+}
 
-function showArticle(article) {
-	let article_h4 = document.createElement('h4');
-	article_h4.innerHTML = article;
-	article_container.append(article_h4);
-};
+function addArticle(article) {
+	let article_tr = document.createElement('tr');
+	article_tr.innerHTML = '<th colspan="2">' + article + '<br>Складская программа</th>';
+	table_container.append(article_tr);
+}
 
 function showStructure() {
-	article_container.innerHTML = '';
 	component_container.innerHTML = '';
 	table_container.innerHTML = '';
 	updateVariables();
@@ -216,7 +213,7 @@ function showStructure() {
 		((izgolovie_text == 'НЕТ') ? '' : ('.' + izgolovie_text)) +
 		((kozuhi_text == 'НЕТ') ? '' : ('.' + kozuhi_text));
 
-	showArticle(article);
+	addArticle(article);
 
 	if (os_text == 'НЕТ' && gazlifti_text == 'А') {
 		addComponent('Боковина', 'МШК-06.10-У.00');
@@ -337,7 +334,6 @@ function deSelect(tag_name) {
 };
 
 form.onchange = function (event) {
-	article_container.innerHTML = '';
 	component_container.innerHTML = '';
 	warning_container.innerHTML = '';
 	table_container.innerHTML = '';

@@ -7,6 +7,7 @@ STATIC_ROOT = STATIC_ROOT.replace("\\", "/")
 
 page_title_list = [
     ["МШК-01", "art01"],
+    ["МШК-04", "art04"],
     ["МШК-06", "art06"],
     # ["МШК-01", "mchk_01"],
     # ["imgident", "imgident"],
@@ -25,6 +26,14 @@ def mchk_01(request):
 def art01(request):
     current_page_title = "МШК-01"
     return render(request, 'art01.html', {
+        'current_page_title': current_page_title,
+        'page_title_list': page_title_list,
+    })
+
+
+def art04(request):
+    current_page_title = "МШК-04"
+    return render(request, 'art04.html', {
         'current_page_title': current_page_title,
         'page_title_list': page_title_list,
     })
