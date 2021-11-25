@@ -1,144 +1,148 @@
 {% extends 'base.html' %}
 {% block content %}
 <div align="center" style="width:100%;">
-      <h2>Конфигуратор МШК-04</h2>
-    <table id="form" border="1" cellpadding="5">
-        <tr>
-            <td><font size="2">Механизм</font></td>
-            <td><font size="3">МШК-04</font></td>
-        </tr>
+    <h2>Конфигуратор МШК-04</h2>
+    <div class="view">
+        <table id="form" border="1" cellpadding="5">
+            <tr>
+                <td><font size="2">Механизм</font></td>
+                <td><font size="3">МШК-04</font></td>
+            </tr>
 
-        <tr>
-            <td><font size="2">Отдельно стоящий</font></td>
-            <td>
-                <select id="os">
-                    <option selected value="0">ОС</option>
-                    <option value="1">НЕТ</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Механизм дивана</font></td>
-            <td>
-                <select id="td">
-                    <option selected value="0">МТД-33</option>
-                    <option value="1">ДФ</option>
-                    <option value="2">НЕТ</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Глубина дивана</font></td>
-            <td>
-                <input type="text" id="gld" list="gld_list" style="font-size:16px;" size="10" value="550">
-                <datalist id="gld_list">
-                    <option value="550">
-                    <option value="650">
-                    <option value="700">
-                </datalist>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Глубина механизма</font></td>
-            <td>
-                <select id="glm">
-                    <option selected value="0">430</option>
-                    <option value="1">470</option>
-                    <option value="2">550</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Глубина шкафа</font></td>
-            <td>
-                <input type="text" id="glhk" list="glhk_list" style="font-size:16px;" size="10" value="430">
-                <datalist id="glhk_list">
-                    <option value="430">
-                    <option value="470">
-                    <option value="550">
-                </datalist>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Ширина спального места</font></td>
-            <td>
-                <input type="text" id="shirina" list="shirina_list" style="font-size:16px;" size="10"
-                       value="1600" autocomplete="off">
-                <datalist id="shirina_list">
-                    <option value="1400">
-                    <option value="1600">
-                    <option value="1800">
-                </datalist>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Длина спального места</font></td>
-            <td>
-                <input type="text" id="dlina" list="dlina_list" style="font-size:16px;" size="10"
-                       value="2000">
-                <datalist id="dlina_list">
-                    <option value="1900">
-                    <option value="2000">
-                </datalist>
-            </td>
-        </tr>
-        </tr>
-        <tr>
-            <td><font size="2">Вытота оси вращения</font></td>
-            <td>
-                <input type="text" id="vov" list="vov_list" style="font-size:16px;" size="10" value="402">
-                <datalist id="vov_list">
-                    <option value="347">
-                    <option value="402">
-                </datalist>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Количество фасадов</font></td>
-            <td>
-                <select id="fcd">
-                    <option selected value="0">2Ф</option>
-                    <option value="1">3Ф</option>
-                    <option value="2">4Ф</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Усиленный</font></td>
-            <td>
-                <select id="us">
-                    <option selected value="0">НЕТ</option>
-                    <option value="1">УС</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Фиксация фасада</font></td>
-            <td>
-                <select id="fixer">
-                    <option value="0">НЕТ</option>
-                    <option selected value="1">КН</option>
-                    <option value="2">РЗ</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><font size="2">Электродвигатель</font></td>
-            <td>
-                <select id="ed">
-                    <option selected value="0">НЕТ</option>
-                    <option value="1">ЭД1</option>
-                    <option value="2">ЭД2</option>
-                </select>
-            </td>
-        </tr>
+            <tr>
+                <td><font size="2">Отдельно стоящий</font></td>
+                <td>
+                    <select id="os">
+                        <option selected value="0">ОС</option>
+                        <option value="1">НЕТ</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Механизм дивана</font></td>
+                <td>
+                    <select id="td">
+                        <option selected value="0">МТД-33</option>
+                        <option value="1">ДФ</option>
+                        <option value="2">НЕТ</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Глубина дивана</font></td>
+                <td>
+                    <input type="text" id="gld" list="gld_list" style="font-size:16px;" size="10" value="550">
+                    <datalist id="gld_list">
+                        <option value="550">
+                        <option value="650">
+                        <option value="700">
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Глубина механизма</font></td>
+                <td>
+                    <select id="glm">
+                        <option selected value="0">430</option>
+                        <option value="1">470</option>
+                        <option value="2">550</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Глубина шкафа</font></td>
+                <td>
+                    <input type="text" id="glhk" list="glhk_list" style="font-size:16px;" size="10" value="430">
+                    <datalist id="glhk_list">
+                        <option value="430">
+                        <option value="470">
+                        <option value="550">
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Ширина спального места</font></td>
+                <td>
+                    <input type="text" id="shirina" list="shirina_list" style="font-size:16px;" size="10"
+                           value="1600" autocomplete="off">
+                    <datalist id="shirina_list">
+                        <option value="1400">
+                        <option value="1600">
+                        <option value="1800">
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Длина спального места</font></td>
+                <td>
+                    <input type="text" id="dlina" list="dlina_list" style="font-size:16px;" size="10"
+                           value="2000">
+                    <datalist id="dlina_list">
+                        <option value="1900">
+                        <option value="2000">
+                    </datalist>
+                </td>
+            </tr>
+            </tr>
+            <tr>
+                <td><font size="2">Вытота оси вращения</font></td>
+                <td>
+                    <input type="text" id="vov" list="vov_list" style="font-size:16px;" size="10" value="402">
+                    <datalist id="vov_list">
+                        <option value="347">
+                        <option value="402">
+                    </datalist>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Количество фасадов</font></td>
+                <td>
+                    <select id="fcd">
+                        <option selected value="0">2Ф</option>
+                        <option value="1">3Ф</option>
+                        <option value="2">4Ф</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Усиленный</font></td>
+                <td>
+                    <select id="us">
+                        <option selected value="0">НЕТ</option>
+                        <option value="1">УС</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Фиксация фасада</font></td>
+                <td>
+                    <select id="fixer">
+                        <option value="0">НЕТ</option>
+                        <option selected value="1">КН</option>
+                        <option value="2">РЗ</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><font size="2">Электродвигатель</font></td>
+                <td>
+                    <select id="ed">
+                        <option selected value="0">НЕТ</option>
+                        <option value="1">ЭД1</option>
+                        <option value="2">ЭД2</option>
+                    </select>
+                </td>
+            </tr>
 
-    </table>
+        </table>
+    </div>
 
     <div id="warning_container"></div>
     <br>
     <div id="component_container"></div>
-    <table id="table_container" border="1" cellpadding="5"></table>
+    <div class="view">
+        <table id="table_container" border="1" cellpadding="5"></table>
+    </div>
     <br>
     <input id="btnExport" type="button" value="Скачать Excel" style="display:none"/>
 
@@ -429,6 +433,8 @@ $("#btnExport").click(function(e) {
 	a.click();
 	e.preventDefault();
 });
+
+
 
 </script>
 
