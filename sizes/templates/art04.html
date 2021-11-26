@@ -174,9 +174,11 @@ function updateVariables() {
 updateVariables();
 
 function addComponent(component_name, component_article) {
-	let component_tr = document.createElement('tr');
-	component_tr.innerHTML = '<td><b>' + component_name + '</b></td>' + '<td>' + component_article + '</td>';
-	table_container.append(component_tr);
+	if (component_article != 'НЕТ') {
+		let component_tr = document.createElement('tr');
+		component_tr.innerHTML = '<td><b>' + component_name + '</b></td>' + '<td>' + component_article + '</td>';
+		table_container.append(component_tr);
+	}
 }
 
 function addArticle(article) {
