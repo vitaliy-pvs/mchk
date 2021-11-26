@@ -31,12 +31,11 @@
             <tr>
                 <td><font size="2">Глубина дивана</font></td>
                 <td>
-                    <input type="text" id="gld" list="gld_list" style="font-size:16px;" size="10" value="550">
-                    <datalist id="gld_list">
-                        <option value="550">
-                        <option value="650">
-                        <option value="700">
-                    </datalist>
+                    <select id="gld">
+                        <option selected value="0">550</option>
+                        <option value="1">650</option>
+                        <option value="2">700</option>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -171,7 +170,7 @@ let os_text, td_text, gld_value, glm_text, glhk_value, shirina_value, dlina_valu
 function updateVariables() {
 	os_text = os.options[os.selectedIndex].text;
 	td_text = td.options[td.selectedIndex].text;
-	gld_value = gld.value;
+	gld_text = gld.options[gld.selectedIndex].text;
 	glm_text = glm.options[glm.selectedIndex].text;
 	glhk_value = glhk.value;
 	shirina_value = shirina.value;
@@ -201,11 +200,12 @@ function showStructure() {
 	component_container.innerHTML = '';
 	table_container.innerHTML = '';
 	btnExport.style.display = 'block';
+	updateVariables();
 
 	article = 'МШК-01' + '.' +
 		((os_text == 'НЕТ') ? '' : (os_text)) +
 		((td_text == 'НЕТ' || td_text == 'МТД-33') ? '' : ('-' + td_text)) +
-		((gld_value == '550' || gld_value == 'НЕТ') ? '' : ('-' + gld_value)) +
+		((gld_text == '550' || gld_text == '') ? '' : ('-' + gld_text)) +
 		((os_text == 'НЕТ') ? '' : '.') +
 		glm_text +
 		((glhk_value == glm_text) ? '' : ('-' + glhk_value)) + '.' +
@@ -235,9 +235,9 @@ function showStructure() {
 	}
 
 	if (os_text == 'ОС' && td_text == 'МТД-33') {
-		addComponent('Пол УПК', `Пол.${glhk_value}.${shirina_value}.${gld_value}-УПК`);
+		addComponent('Пол УПК', `Пол.${glhk_value}.${shirina_value}.${gld_text}-УПК`);
 	} else if (os_text == 'ОС' && td_text == 'ДФ') {
-		addComponent('Пол УПК', `Пол.${glhk_value}.${shirina_value}.${gld_value}.ДФ-УПК`);
+		addComponent('Пол УПК', `Пол.${glhk_value}.${shirina_value}.${gld_text}.ДФ-УПК`);
 	} else {
 		addComponent('Пол УПК', 'НЕТ');
 	}
@@ -389,20 +389,24 @@ function deSelect(tag_name) {
 
 opori.onchange = function(event) {
     switch (opori.options[opori.selectedIndex].text) {
+        <!--7)-->
     	case 'БО':
     		vop.innerHTML = '<option selected value="0"></option>';
     		vov.value = '402';
     		break;
+    	<!--8)-->
     	case 'ОК':
     		vop.innerHTML = '<option selected value="0">250</option><option value="1">200</option><option value="2">220</option>';
     		vov.value = Number(vop.options[vop.selectedIndex].text) + 152;
     		break;
+    	<!--9)-->
     	case 'ОП-06':
     	case 'МО':
     	case 'МО-УД':
     		vop.innerHTML = '<option selected value="0">260</option>';
     		vov.value = Number(vop.options[vop.selectedIndex].text) + 142;
     		break;
+    	<!--10)-->
     	case 'ОМ':
     		vop.innerHTML = '<option selected value="0">270</option>';
     		vov.value = Number(vop.options[vop.selectedIndex].text) + 132;
@@ -428,12 +432,11 @@ form.onchange = function(event) {
 	if (os_text == 'НЕТ') {
 		td.selectedIndex = '2';
 		td.disabled = true;
-		gld.value = 'НЕТ';
+		gld.selectedIndex = '0';
 		gld.disabled = true;
 	} else {
 		td.disabled = false;
 		gld.disabled = false;
-		gld.value = '550';
 	}
 
 	<!--2)-->
@@ -469,50 +472,31 @@ form.onchange = function(event) {
 	}
 
 	<!--6)-->
-	if (Number(glm_text) > Number(glhk_value)) {
-		addWarn("- Глубина механизма не может быть больше глубины шкафа.");
-		glm.style.color = "red";
+	if (Number(glhk.value) > 600 || Number(glm_text) > Number(glhk_value)) {
+		addWarn("- Укажите глубину шкафа не менее глубины механизма и не более 600 мм.");
 		glhk.style.color = "red";
 	}
 
-
-
-
-
-
-	<!--7)-->
-
-
-	<!--9)-->
-	if (350 > Number(glhk.value) || Number(glhk.value) > 600) {
-		addWarn("- Укажите глубину шкафа от 350 мм до 600 мм.");
-		glhk.style.color = "red";
-	}
-
-	<!--10)-->
+	<!--11)-->
 	if (680 > Number(shirina.value) || Number(shirina.value) > 2100) {
 		addWarn("- Укажите ширину спального места от 680 мм до 2100 мм.");
 		shirina.style.color = "red";
 	}
 
-	<!--11)-->
+	<!--12)-->
 	if (800 > Number(dlina.value) || Number(dlina.value) > 2100) {
 		addWarn("- Укажите длину спального места от 800 мм до 2100 мм.");
 		dlina.style.color = "red";
 	}
 
-	if (opori_text != 'БО' && vop.options[vop.selectedIndex].text == 'НЕТ') {
-		addWarn("- При наличии опоры нужно указать ее высоту.");
-		opori.style.color = "red";
-		vop.style.color = "red";
-	}
-
+	<!--13)-->
 	if (us_text != 'УС' && Number(shirina.value) >= 1800 && Number(dlina.value) >= 1800) {
 		addWarn("- Вертикальный МШК с шириной спального места 1800 мм и более должен иметь усиленное исполнение (УС).");
 		us.style.color = "red";
 		shirina.style.color = "red";
 	}
 
+	<!--14)-->
 	if (us_text == 'УС' && Number(shirina.value) < 1800) {
 		addWarn("- Механизм с шириной спального места менее 1800 мм не имеет усиленного исполнения (УС).");
 		us.style.color = "red";
