@@ -215,7 +215,7 @@ function showStructure() {
 		dlina_value +
 		((opori_text == 'ОК' && vop.options[vop.selectedIndex].text == '250') ? '' : ('.' + opori_text)) +
 		((opori_text == 'БО' || (opori_text == 'ОК' && vop.options[vop.selectedIndex].text == '250') || opori_text == 'МО-УД' || opori_text == 'ОП-06') ? '' : ('-' + vop.options[vop.selectedIndex].text)) +
-		((us_text == 'НЕТ') ? '' : ('.' + us_text)) +
+		((us_text == 'НЕТ' || (us_text == 'УС' && Number(shirina.value) >= 1800 && Number(dlina.value) >= 1800)) ? '' : ('.' + us_text)) +
 		((fixer_text == 'НЕТ') ? '' : ('.' + fixer_text)) +
 		((ed_text == 'НЕТ') ? '' : ('.' + ed_text));
 
@@ -226,7 +226,8 @@ function showStructure() {
 		shirina_value + '.' +
 		dlina_value + '.2Ф' +
 		((opori_text == 'ОК' || opori_text == 'БО') ? '' : ((opori_text == 'ОМ' || opori_text == 'МО' || opori_text == 'МО-УД') ? '.ОМ' : ('.' + opori_text))) +
-		((us_text == 'НЕТ') ? '' : ('.' + us_text)) + ((ed_text != 'ЭД2') ? '' : ('.' + ed_text)) +'-УПК';
+		((us_text == 'НЕТ' || (us_text == 'УС' && Number(shirina.value) >= 1800 && Number(dlina.value) >= 1800)) ? '' : ('.' + us_text)) +
+		((ed_text != 'ЭД2') ? '' : ('.' + ed_text)) +'-УПК';
 
 	addComponent('Рама УПК', rama_article);
 
@@ -353,7 +354,7 @@ function showStructure() {
     		addComponent('Газлифты', '1400 Н - 2шт.<br>1200 Н - 2шт.<br>1000 Н - 2шт.<br>800 Н - 2шт.');
     		break;
     	case 1800:
-    		addComponent('Газлифты', '1600 Н - 2шт.<br>1200 Н - 4шт.<br>1000 Н - 2шт.');
+    		addComponent('Газлифты', '1500 Н - 2шт.<br>1200 Н - 4шт.<br>1000 Н - 2шт.');
     		break;
     	case 2000:
     		addComponent('Газлифты', '1500 Н - 2шт.<br>1400 Н - 2шт.<br>1200 Н - 2шт.<br>1000 Н - 2шт.');
@@ -498,13 +499,6 @@ form.onchange = function(event) {
 		shirina.style.color = "red";
 	}
 
-	<!--14)-->
-	if (us_text == 'УС' && Number(shirina.value) < 1800) {
-		addWarn("- Механизм с шириной спального места менее 1800 мм не имеет усиленного исполнения (УС).");
-		us.style.color = "red";
-		shirina.style.color = "red";
-	}
-
 	if (warning_container.innerHTML == '') {
 		showStructure();
 	}
@@ -516,6 +510,14 @@ form.onchange = function(event) {
 let change_event = new Event("change");
 opori.dispatchEvent(change_event);
 form.dispatchEvent(change_event);
+
+<!--Генерация события change_event при возврате на страницу после скачивания файла.-->
+history.navigationMode = 'compatible';
+$(document).ready(function(){
+    let change_event = new Event("change");
+    opori.dispatchEvent(change_event);
+    form.dispatchEvent(change_event);
+});
 
 $("#btnExport").click(function(e) {
 	var a = document.createElement('a');
