@@ -9,9 +9,9 @@ page_title_list = [
     ["МШК-01", "art01"],
     ["МШК-04", "art04"],
     ["МШК-06", "art06"],
-#    ["МШК-01СУ", "mchk_01"],
-#    ["imgident", "imgident"],
-#    ["textident", "textident"],
+   ["МШК-01СУ", "mchk_01"],
+   ["imgident", "imgident"],
+   ["textident", "textident"],
 ]
 
 
